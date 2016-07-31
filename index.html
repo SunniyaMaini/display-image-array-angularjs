@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+<head>
+<title>Store Module</title>
+<style>
+.list-group-item ul:first-of-type {
+	list-style: none;
+}
+.list-group-item ul:first-of-type li {
+	display: inline-block;
+	width: 150px;
+	padding: 0 30px;
+}
+.list-group-item ul:first-of-type li img {
+	max-width: 100%;
+}
+
+</style>
+</head>
+<body ng-controller="StoreController as store">
+<!--  Products Container  -->
+<div class="list-group">
+  <!--  Product Container  -->
+  <div class="list-group-item" ng-repeat="product in store.products">
+    <h3>
+      {{product.name}}
+      <em class="pull-right">{{product.price | currency}}</em>
+    </h3>
+    <!-- Image Gallery  -->
+    <div class="gallery">
+      <img ng-src="{{product.images[0]}}" />
+    </div>
+    
+    <ul>
+      <li ng-repeat="image in product.images">
+        <img src="{{image}}" alt="" />
+      </li>
+    </ul>
+    
+    <ul>
+      <li ng-repeat="count in product.counts">
+        <h4>{{count}}</h4>
+      </li>
+    </ul>
+    
+  </div>
+</div>
+
+
+
+<h3>Filters</h3>
+<p>Syntax: {{data<sup>*</sup> | filter:options<sup>*</sup>}}</p>
+
+<h4>Date: {{'1388123412323' | date:'MM/dd/yyyy @ h:mma'}}</h4>
+<h4>Uppercase: {{'octagem' | uppercase }}</h4>
+<h4>Characters to some limit: {{'Description' | limitTo:8 }}</h4>
+
+<script src="angular.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
